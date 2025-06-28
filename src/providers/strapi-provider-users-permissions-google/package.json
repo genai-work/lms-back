@@ -1,0 +1,5 @@
+{
+  "name": "strapi-provider-users-permissions-google",
+  "main": "index.js",
+  "version": "1.0.0"
+}

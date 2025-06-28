@@ -1,0 +1,44 @@
+{
+  "name": "lms-back",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@nexide/strapi-provider-bunny": "^1.3.5",
+    "@slack/webhook": "^7.0.5",
+    "@strapi-community/plugin-redis": "^2.0.0",
+    "@strapi/plugin-users-permissions": "5.12.6",
+    "@strapi/provider-email-nodemailer": "^5.12.6",
+    "@strapi/strapi": "5.12.6",
+    "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "google-auth-library": "^9.15.1",
+    "google-spreadsheet": "^4.1.4",
+    "mysql2": "3.9.8",
+    "nodemailer": "^6.10.1",
+    "openai": "^4.96.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "strapi-provider-users-permissions-google": "file:providers/strapi-provider-users-permissions-google",
+    "styled-components": "^6.0.0",
+    "turndown": "^7.2.0"
+  },
+  "author": {
+    "name": "A GenAI.works developer"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "c2700223-40f2-4e67-92fa-8df10661f5ab"
+  }
+}
