@@ -19,9 +19,14 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       origin: [
-        'https://aggregator.genai.works',
-        'http://localhost:1336',
+        'https://lms.genai.works',
+        'https://lms-admin.genai.works',
+        "https://lms-staging.genai.works",
+        "https://lms-staging-admin.genai.works",
+        'http://localhost:1337',
+        'http://localhost:1338',
         'http://localhost:3000',
+        'http://localhost:3001',
       ],
       methods: '*',
       headers: '*',
