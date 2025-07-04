@@ -369,135 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiNewsCategoryNewsCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'news_categories';
-  info: {
-    description: '';
-    displayName: 'News categories';
-    pluralName: 'news-categories';
-    singularName: 'news-category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::news-category.news-category'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiNewsPostNewsPost extends Struct.CollectionTypeSchema {
-  collectionName: 'news_posts';
-  info: {
-    description: '';
-    displayName: 'News posts';
-    pluralName: 'news-posts';
-    singularName: 'news-post';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    article_id: Schema.Attribute.String;
-    category: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::news-category.news-category'
-    >;
-    category_str: Schema.Attribute.String;
-    content: Schema.Attribute.RichText;
-    country: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    creator: Schema.Attribute.String;
-    description: Schema.Attribute.Text;
-    duplicates: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::news-post.news-post'
-    >;
-    duplicates_set: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::news-post.news-post'
-    >;
-    image_url: Schema.Attribute.String;
-    language: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 2;
-        minLength: 2;
-      }> &
-      Schema.Attribute.DefaultTo<'en'>;
-    link: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::news-post.news-post'
-    > &
-      Schema.Attribute.Private;
-    pubDate: Schema.Attribute.DateTime;
-    pubDateTZ: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    sentiment: Schema.Attribute.Enumeration<
-      ['positive', 'negative', 'neutral']
-    >;
-    source_id: Schema.Attribute.String;
-    source_url: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    video_url: Schema.Attribute.String;
-  };
-}
-
-export interface ApiNewsSourceNewsSource extends Struct.CollectionTypeSchema {
-  collectionName: 'news_sources';
-  info: {
-    description: '';
-    displayName: 'News sources';
-    pluralName: 'news-sources';
-    singularName: 'news-source';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::news-source.news-source'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    type: Schema.Attribute.Enumeration<
-      ['website', 'website_to_scrap', 'social_media', 'rss_feed']
-    > &
-      Schema.Attribute.DefaultTo<'website'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    url: Schema.Attribute.String;
-  };
-}
-
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -953,31 +824,35 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
+    achieves: Schema.Attribute.JSON;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    preferences: Schema.Attribute.JSON;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -985,6 +860,8 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    roles: Schema.Attribute.JSON;
+    surname: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1007,9 +884,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::news-category.news-category': ApiNewsCategoryNewsCategory;
-      'api::news-post.news-post': ApiNewsPostNewsPost;
-      'api::news-source.news-source': ApiNewsSourceNewsSource;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
