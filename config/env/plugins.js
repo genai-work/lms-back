@@ -54,25 +54,5 @@ module.exports = ({ env }) => {
                 allowStale: false,
             },
         },
-        redis: {
-            config: {
-                connections: {
-                    default: {
-                        connection: {
-                            host: process.env.REDIS_HOST,
-                            port: parseInt(process.env.REDIS_PORT, 10),
-                            db: 0,
-                            username: 'default',
-                            password: process.env.REDIS_PASSWORD,
-                            family: 0,
-                            dropBufferSupport: true
-                        },
-                        settings: {
-                            debug: false,
-                        },
-                    },
-                },
-            },
-        },
     });
 }
