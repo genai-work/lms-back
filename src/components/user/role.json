@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_user_roles",
+  "info": {
+    "displayName": "Role",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "role": {
+      "type": "string"
+    },
+    "years": {
+      "type": "string"
+    }
+  }
+}
