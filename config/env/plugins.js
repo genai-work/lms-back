@@ -44,15 +44,5 @@ module.exports = ({ env }) => {
                 },
             }
         },
-        'strapi-cache': {
-            enabled: true,
-            config: {
-                debug: false,
-                max: 10000,
-                ttl: 1000 * 60 * 60, // 1h
-                size: 1024 * 1024 * 1024 * 10, // 10 GB
-                allowStale: false,
-            },
-        },
     });
 }
